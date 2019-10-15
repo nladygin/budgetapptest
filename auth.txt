@@ -1,2 +1,2 @@
 curl -H "Content-Type: application/json" -d "{\"username\": \"test@test\", \"password\": \"123456\"}" -X POST http://127.0.0.1:8181/api/users
-curl -H "Content-Type: application/json" -d "{\"username\": \"test@test\", \"password\": \"123456\"}" -X POST http://127.0.0.1:8181/api/users/auth
+curl -H "Content-Type: application/json" -d "{\"username\": \"test@test\", \"password\": \"123456\"}" -X POST http://127.0.0.1:8181/api/users/auth > D:\PROJECTS\JavaQAEngineer\budgetapptest\src\test\resources\auth.json

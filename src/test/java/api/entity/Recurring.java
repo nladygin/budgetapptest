@@ -1,11 +1,13 @@
 package api.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 
 
 @Component
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Recurring extends BaseEntity implements Entity {
 
 

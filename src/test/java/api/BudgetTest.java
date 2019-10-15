@@ -2,13 +2,13 @@ package api;
 
 import api.entity.Budget;
 import api.entity.Category;
-import api.entity.User;
 import io.restassured.response.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.apache.http.HttpStatus.*;
@@ -24,8 +24,8 @@ public class BudgetTest extends BaseTest {
 
 
     @Test
-    public void getBudgets(){
-        Response r = requestHelper.go(user.token, endpoint, Method.GET, null, SC_OK);
+    public void getBudgets() {
+        Response r = requestHelper.go(endpoint, Method.GET, null, SC_OK);
             ArrayList<Budget> c =  r.then().extract().as(ArrayList.class);
                 assertThat(c.size(), equalTo(65));
     }
@@ -33,11 +33,8 @@ public class BudgetTest extends BaseTest {
 
 
     @Test
-    public void createAndDeleteBudget(){
-        category.user = user; //authHelper.getCurrentUser();
-        budget.category = category;
-
-        Response r = requestHelper.go(user.token, endpoint, Method.POST, budget, SC_CREATED);
+    public void createAndDeleteBudget() throws IOException {
+        Response r = requestHelper.go(endpoint, Method.POST, budget, SC_CREATED);
             Budget b = r.then().extract().as(Budget.class);
                 assertThat(b.name, equalTo("Test"));
                 assertThat(b.projected, equalTo(13.0));

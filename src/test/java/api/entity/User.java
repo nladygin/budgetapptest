@@ -1,9 +1,11 @@
 package api.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.stereotype.Component;
 
 
 @Component
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User extends BaseEntity implements Entity {
 
 

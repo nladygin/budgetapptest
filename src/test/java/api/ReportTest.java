@@ -1,6 +1,5 @@
 package api;
 
-import api.entity.Category;
 import api.entity.Report;
 import api.entity.Transaction;
 import io.restassured.response.Response;
@@ -25,8 +24,7 @@ public class ReportTest extends BaseTest {
 
     @Test
     public void getReport(){
-
-        Response r = requestHelper.go(user.token, endpoint, Method.POST, report, SC_OK);
+        Response r = requestHelper.go(endpoint, Method.POST, report, SC_OK);
             ArrayList<Transaction> c = r.then().extract().as(ArrayList.class);
                 assertThat(c.size(), equalTo(0));
     }

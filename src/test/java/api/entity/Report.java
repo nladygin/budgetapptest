@@ -1,5 +1,6 @@
 package api.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 
 @Component
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Report extends BaseEntity implements Entity {
 
 
