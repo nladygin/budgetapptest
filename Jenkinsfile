@@ -18,12 +18,16 @@ node {
     
     stage('auth'){
         def workspace = pwd()
-        def cmd = 'curl -H "Content-Type: application/json" -d "{\\"username\\": \\"test@test\\", \\"password\\": \\"123456\\"}" -X POST http://127.0.0.1:8181/api/users && curl -H "Content-Type: application/json" -d "{\\"username\\": \\"test@test\\", \\"password\\": \\"123456\\"}" -X POST http://127.0.0.1:8181/api/users/auth > ${workspace}/src/test/resources/auth.json'
-        if (isUnix()) {
-            sh: "${cmd}"
-        } else {
-            bat: 'curl -H "Content-Type: application/json" -d "{\\"username\\": \\"test@test\\", \\"password\\": \\"123456\\"}" -X POST http://127.0.0.1:8181/api/users && curl -H "Content-Type: application/json" -d "{\\"username\\": \\"test@test\\", \\"password\\": \\"123456\\"}" -X POST http://127.0.0.1:8181/api/users/auth > ${workspace}/src/test/resources/auth.json'
-        }
+        def signup = "curl -H \"Content-Type: application/json\" -d \"{\\\"username\\\": \\\"test@test\\\", \\\"password\\\": \\\"123456\\\"}\" -X POST http://127.0.0.1:8181/api/users"
+        def auth   = "curl -H \"Content-Type: application/json\" -d \"{\\\"username\\\": \\\"test@test\\\", \\\"password\\\": \\\"123456\\\"}\" -X POST http://127.0.0.1:8181/api/users/auth > ${workspace}/src/test/resources/auth.json"
+            if (isUnix()){
+                sh label: '', script: "${signup}"
+                sh label: '', script: "${auth}"
+                
+            } else {
+                bat label: '', script: "${signup}"
+                bat label: '', script: "${auth}"
+            }
     }
     
     stage('Test') {
@@ -38,7 +42,15 @@ node {
         container: {
             stage('stop-container'){
 //              appContainer.stop()
-                bat: 'docker stop budgetapp-nladygin && docker rm budgetapp-nladygin'
+                def stopContainer = "docker stop budgetapp-nladygin"
+                def killContainer = "docker rm budgetapp-nladygin"
+                if (isUnix()){
+                    sh label: '', script: "${stopContainer}"
+                    sh label: '', script: "${killContainer}"
+                } else {
+                    bat label: '', script: "${stopContainer}"
+                    bat label: '', script: "${killContainer}"                    
+                }    
             }
         },
         report: {
