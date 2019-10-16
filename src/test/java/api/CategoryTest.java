@@ -1,6 +1,7 @@
 package api;
 
 import api.entity.Category;
+import api.entity.Error;
 import api.helper.RequestHelper;
 import io.restassured.response.Response;
 import org.junit.Test;
@@ -42,6 +43,11 @@ public class CategoryTest extends BaseTest {
     }
 
 
+
+    @Test
+    public void deleteWrongCategory(){
+        Response r = requestHelper.go(endpoint + "/666", Method.DELETE, null, SC_NOT_FOUND);
+    }
 
 
 

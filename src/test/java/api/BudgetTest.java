@@ -46,6 +46,12 @@ public class BudgetTest extends BaseTest {
     }
 
 
+    @Test
+    public void deleteWrongBudget(){
+        Response r = requestHelper.go(endpoint + "/666", Method.DELETE, null, SC_NOT_FOUND);
+    }
+
+
 
 
 

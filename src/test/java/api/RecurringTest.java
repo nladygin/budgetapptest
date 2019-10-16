@@ -1,10 +1,12 @@
 package api;
 
 import api.entity.Budget;
+import api.entity.Error;
 import api.entity.Recurring;
 import api.entity.Transaction;
 import api.helper.RequestHelper;
 import io.restassured.response.Response;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,14 @@ public class RecurringTest extends BaseTest {
                         assertThat(tr.size(), equalTo(1));
 
                             r = requestHelper.go(endpoint + "/" + re.id, Method.DELETE, null, SC_NO_CONTENT);
+    }
+
+
+
+    @Test
+    @Ignore
+    public void deleteWrongTransaction(){
+        Response r = requestHelper.go(endpoint + "/666", Method.DELETE, null, SC_INTERNAL_SERVER_ERROR);
     }
 
 
