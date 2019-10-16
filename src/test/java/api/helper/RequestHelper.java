@@ -1,7 +1,10 @@
-package api;
+package api.helper;
 
+import api.Config;
+import api.Method;
 import api.entity.Entity;
 import api.entity.User;
+import api.helper.AuthHelper;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;

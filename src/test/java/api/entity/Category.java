@@ -1,6 +1,6 @@
 package api.entity;
 
-import api.AuthHelper;
+import api.helper.AuthHelper;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

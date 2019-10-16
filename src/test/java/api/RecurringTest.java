@@ -1,16 +1,15 @@
 package api;
 
 import api.entity.Budget;
-import api.entity.Category;
 import api.entity.Recurring;
 import api.entity.Transaction;
+import api.helper.RequestHelper;
 import io.restassured.response.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import static org.apache.http.HttpStatus.*;

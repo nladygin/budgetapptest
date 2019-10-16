@@ -1,4 +1,4 @@
-package api;
+package api.helper;
 
 import api.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;

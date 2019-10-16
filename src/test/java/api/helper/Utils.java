@@ -1,4 +1,4 @@
-package api;
+package api.helper;
 
 import org.springframework.stereotype.Component;
 
