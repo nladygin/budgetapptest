@@ -30,7 +30,7 @@ node {
             }
     }
     
-    stage('Test') {
+    stage('run-test') {
         try {
             bat 'mvn clean test'
         } finally {    
@@ -54,7 +54,7 @@ node {
             }
         },
         report: {
-            stage('Report') {
+            stage('make-report') {
                 allure([
                     includeProperties: false,
                     jdk: '',
@@ -65,7 +65,7 @@ node {
             }
         },
         notification: {
-            stage('Notification') {
+            stage('send-notification') {
                 mail to:"${gitResult.GIT_AUTHOR_EMAIL}",
                      cc: "nladygin@hrsinternational.com", 
                      subject:"test result: ${currentBuild.fullDisplayName}", 
