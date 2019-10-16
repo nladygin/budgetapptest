@@ -1,6 +1,8 @@
 package api.entity;
 
+import api.helper.Utils;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -22,13 +24,10 @@ public class Report extends BaseEntity implements Entity {
 
     @PostConstruct
     public void init(){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date());
-            cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-                startOn = String.valueOf(cal.getTime().toInstant().toEpochMilli()/1000);
-
-            cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-                endOn = String.valueOf(cal.getTime().toInstant().toEpochMilli()/1000);
+        startOn = utils.getMonthFirstDay();
+        endOn = utils.getMonthLastDay();
     }
 
+
+    @Autowired private Utils utils;
 }
