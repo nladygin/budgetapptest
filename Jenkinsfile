@@ -30,7 +30,7 @@ node {
             }
     }
     
-    stage('run-test') {
+    stage('run-tests') {
         try {
             bat 'mvn clean test'
         } finally {    
