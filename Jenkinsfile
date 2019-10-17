@@ -32,7 +32,7 @@ node {
     
     stage('run-tests') {
         try {
-            bat 'mvn clean test'
+            bat 'mvn clean -Dtest="api.*Test" test'
         } finally {    
             testResult = junit 'target/surefire-reports/*.xml'
         }
