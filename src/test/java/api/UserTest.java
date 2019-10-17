@@ -6,6 +6,7 @@ import api.entity.Password;
 import api.entity.Usage;
 import api.entity.User;
 import api.helper.AuthHelper;
+import api.helper.Method;
 import api.helper.RequestHelper;
 import api.helper.Utils;
 import io.restassured.response.Response;

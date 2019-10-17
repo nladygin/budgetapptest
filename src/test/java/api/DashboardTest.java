@@ -1,6 +1,7 @@
 package api;
 
 import api.entity.*;
+import api.helper.Method;
 import api.helper.RequestHelper;
 import api.helper.Utils;
 import io.restassured.response.Response;

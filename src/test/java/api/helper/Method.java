@@ -1,4 +1,4 @@
-package api;
+package api.helper;
 
 public enum Method {
     GET,

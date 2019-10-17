@@ -1,9 +1,9 @@
 package api;
 
 import api.entity.Budget;
-import api.entity.Error;
 import api.entity.Recurring;
 import api.entity.Transaction;
+import api.helper.Method;
 import api.helper.RequestHelper;
 import io.restassured.response.Response;
 import org.junit.Ignore;

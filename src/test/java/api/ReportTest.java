@@ -2,6 +2,7 @@ package api;
 
 import api.entity.Report;
 import api.entity.Transaction;
+import api.helper.Method;
 import api.helper.RequestHelper;
 import io.restassured.response.Response;
 import org.junit.Test;
