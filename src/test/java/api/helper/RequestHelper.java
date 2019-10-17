@@ -27,7 +27,7 @@ public class RequestHelper {
         log.info(method + " " + endpoint);
         log.info("token: " + user.token);
 
-        String url = config.serverURL + endpoint;
+        String url = config.serverURL + "/api" + endpoint;
         String b = (requestBody != null) ? requestBody.asJsonString() : "";
         RequestSpecification requestSpecification =
                 given()
