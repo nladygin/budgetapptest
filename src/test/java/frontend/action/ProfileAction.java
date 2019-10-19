@@ -17,6 +17,10 @@ public class ProfileAction extends BaseAction {
         open(profilePage.root);
     }
 
+    public void gotoPassword(){
+        profilePage.locatorPasswordTab.click();
+    }
+
     public void setProfileName(String name){
         pageElementHelper
                 .setValue(profilePage.locatorNameInput, name)
@@ -47,6 +51,21 @@ public class ProfileAction extends BaseAction {
     }
 
 
+    public void changeProfilePassword(String originalPassword, String newPassword, String confirmPassword){
+        profilePage.locatorOriginalPasswordInput.sendKeys(originalPassword);
+        profilePage.locatorNewPasswordInput.sendKeys(newPassword);
+        profilePage.locatorConfirmPasswordInput.sendKeys(confirmPassword);
+        profilePage.locatorChangePasswordButton.click();
+    }
+
+
+    public void checkSuccessMessage(String message){
+        assertThat(profilePage.locatorSuccessMessage.getText(), CoreMatchers.equalTo(message));
+    }
+
+    public void checkAlertMessage(String message){
+        assertThat(profilePage.locatorAlertMessage.getText(), CoreMatchers.equalTo(message));
+    }
 
 
 
