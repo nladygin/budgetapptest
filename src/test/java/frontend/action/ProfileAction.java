@@ -24,7 +24,7 @@ public class ProfileAction extends BaseAction {
     public void setProfileName(String name){
         pageElementHelper
                 .setValue(profilePage.locatorNameInput, name)
-                .click(profilePage.locatorUpdateButton);
+                .click(profilePage.locatorFormButton);
     }
 
 
@@ -39,7 +39,7 @@ public class ProfileAction extends BaseAction {
     public void setCurrencySign(String sign){
         pageElementHelper
                 .setValue(profilePage.locatorCurrencyInput, sign)
-                .click(profilePage.locatorUpdateButton);
+                .click(profilePage.locatorFormButton);
     }
 
 
@@ -55,7 +55,7 @@ public class ProfileAction extends BaseAction {
         profilePage.locatorOriginalPasswordInput.sendKeys(originalPassword);
         profilePage.locatorNewPasswordInput.sendKeys(newPassword);
         profilePage.locatorConfirmPasswordInput.sendKeys(confirmPassword);
-        profilePage.locatorChangePasswordButton.click();
+        profilePage.locatorFormButton.click();
     }
 
 
