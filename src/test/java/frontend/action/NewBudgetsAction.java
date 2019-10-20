@@ -4,7 +4,9 @@ package frontend.action;
 import frontend.page.NewBudgetsPage;
 import frontend.page.NewCategoriesPage;
 import org.hamcrest.CoreMatchers;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +37,7 @@ public class NewBudgetsAction extends BaseAction{
 
 
     public void checkSuccessMessage(String message){
+        new WebDriverWait(driver, 4L).until(ExpectedConditions.visibilityOf(newBudgetsPage.locatorSuccessAlert));
         assertThat(
                 newBudgetsPage.locatorSuccessAlert.getText(),
                 CoreMatchers.equalTo(message)
