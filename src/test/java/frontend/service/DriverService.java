@@ -25,9 +25,9 @@ public class DriverService {
     public WebDriver initDriver(){
         if (driver == null) {
             driver = new ChromeDriver();
-            driver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
-            driver.manage().timeouts().pageLoadTimeout(10L, TimeUnit.SECONDS);
-            driver.manage().timeouts().setScriptTimeout(10L, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(4L, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(13L, TimeUnit.SECONDS);
+            driver.manage().timeouts().setScriptTimeout(4L, TimeUnit.SECONDS);
             driver.manage().window().maximize();
         }
         return driver;

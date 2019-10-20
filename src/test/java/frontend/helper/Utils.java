@@ -11,10 +11,20 @@ import org.springframework.stereotype.Component;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @Component
 public class Utils {
+
+
+    public String makeToday(String format){
+        DateFormat dateFormat = new SimpleDateFormat(format);
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 
 
     public String makeAuthToken(String username, String password){
