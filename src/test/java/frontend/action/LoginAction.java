@@ -27,6 +27,7 @@ public class LoginAction extends BaseAction{
     public void auth(){
         open();
         login(credentials.username, credentials.password);
+        checkSuccessLogin();
 //        utils.setCookie("auth", utils.makeAuthToken(credentials.username, credentials.password));
     }
 
@@ -35,7 +36,6 @@ public class LoginAction extends BaseAction{
         loginPage.locatorUsernameInput.sendKeys(username);
         loginPage.locatorPasswordInput.sendKeys(password);
         loginPage.locatorLoginButton.click();
-        new WebDriverWait(driver, 4L).until(ExpectedConditions.visibilityOf(dashboardPage.locatorHeader));
     }
 
 
@@ -46,6 +46,10 @@ public class LoginAction extends BaseAction{
 
     public void checkSuccessSignUpMessage(String message){
         assertThat(loginPage.locatorSuccessSignUpMessage.getText(), CoreMatchers.equalTo(message));
+    }
+
+    public void checkSuccessLogin(){
+        new WebDriverWait(driver, 4L).until(ExpectedConditions.visibilityOf(dashboardPage.locatorHeader));
     }
 
 
