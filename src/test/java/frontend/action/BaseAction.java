@@ -14,6 +14,6 @@ public class BaseAction {
 
 
 
-    @Autowired private WebDriver driver;
+    @Autowired protected WebDriver driver;
     @Autowired private Config config;
 }

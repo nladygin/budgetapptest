@@ -3,8 +3,11 @@ package frontend.action;
 
 import frontend.config.Credentials;
 import frontend.helper.Utils;
+import frontend.page.DashboardPage;
 import frontend.page.LoginPage;
 import org.hamcrest.CoreMatchers;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +15,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @Component
 public class LoginAction extends BaseAction{
+
+    private WebDriverWait wait;
 
 
     public void open(){
@@ -30,6 +35,7 @@ public class LoginAction extends BaseAction{
         loginPage.locatorUsernameInput.sendKeys(username);
         loginPage.locatorPasswordInput.sendKeys(password);
         loginPage.locatorLoginButton.click();
+        new WebDriverWait(driver, 4L).until(ExpectedConditions.visibilityOf(dashboardPage.locatorHeader));
     }
 
 
@@ -51,4 +57,5 @@ public class LoginAction extends BaseAction{
     //    @Autowired private Utils utils;
     @Autowired private Credentials credentials;
     @Autowired private LoginPage loginPage;
+    @Autowired private DashboardPage dashboardPage;
 }
