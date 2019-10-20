@@ -4,7 +4,9 @@ package frontend.action;
 import frontend.page.NewCategoriesPage;
 import frontend.page.NewRecurringsPage;
 import org.hamcrest.CoreMatchers;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +38,7 @@ public class NewRecurringsAction extends BaseAction{
 
 
     public void checkSuccessMessage(String message){
+        new WebDriverWait(driver, 4L).until(ExpectedConditions.visibilityOf(newRecurringsPage.locatorSuccessAlert));
         assertThat(
                 newRecurringsPage.locatorSuccessAlert.getText(),
                 CoreMatchers.equalTo(message)

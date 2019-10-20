@@ -81,6 +81,19 @@ public class RecurringsTest extends BaseTest {
     }
 
 
+    @Test
+    public void checkTransaction(){
+        String budget = "Music";
+        loginAction.auth();
+        addRecurring(budget, 13.0, utils.makeToday("dd/MM/yyyy"), "Daily", "test " + budget + " daily recurring");
+        newRecurringsAction.checkSuccessMessage("Successfully created Recurring");
+        recurringsAction.open();
+        recurringsAction.search(budget);
+        recurringsAction.checkSearchResult(1);
+        recurringsAction.showTransaction();
+        recurringsAction.checkTransaction();
+    }
+
 
 
 
