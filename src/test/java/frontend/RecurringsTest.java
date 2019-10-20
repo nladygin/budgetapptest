@@ -10,24 +10,27 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RecurringsTest extends BaseTest {
 
-/*
+
     @Test
-    public void searchBudget(){
+    public void searchRecurring(){
         loginAction.auth();
-        budgetsAction.open();
-        budgetsAction.search("divi");
-        budgetsAction.checkSearchResult(1);
+        recurringsAction.open();
+        addRecurring("Phone", 13.0, utils.makeToday("dd/MM/yyyy"), "Daily", "test searchable daily recurring");
+        newRecurringsAction.checkSuccessMessage("Successfully created Recurring");
+        recurringsAction.open();
+        recurringsAction.search("searchable");
+        recurringsAction.checkSearchResult(1);
     }
-*/
-/*
+
+
     @Test
     public void searchNonexistentBudget(){
         loginAction.auth();
-        budgetsAction.open();
-        budgetsAction.search("nonexistentbudget");
-        budgetsAction.checkSearchResult(0);
+        recurringsAction.open();
+        recurringsAction.search("nonexistentrecurring");
+        recurringsAction.checkSearchResult(0);
     }
-*/
+
 
     @Test
     public void addRecurring(){
@@ -38,7 +41,7 @@ public class RecurringsTest extends BaseTest {
 
 
     @Test
-    public void deleteBudget(){
+    public void deleteRecurring(){
         String budget = "Fuel";
         loginAction.auth();
         addRecurring(budget, 13.0, utils.makeToday("dd/MM/yyyy"), "Daily", "test " + budget + " daily recurring");
