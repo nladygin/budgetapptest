@@ -14,7 +14,12 @@ public class DashboardPage extends BasePage{
 
     public final String root = "/dashboard";
 
-    @FindBy(css = "section.content-header.ng-scope") public WebElement locatorHeader;
+    @FindBy(css = "section.content-header.ng-scope")          public WebElement locatorHeader;
+    @FindBy(css = "div.small-box.bg-aqua h3:nth-child(2)")    public WebElement locatorIncome;
+    @FindBy(css = "div.small-box.bg-yellow h3:nth-child(2)")  public WebElement locatorProjected;
+    @FindBy(css = "div.small-box.bg-red h3:nth-child(2)")     public WebElement locatorActual;
+    @FindBy(css = "div.small-box.bg-green h3:nth-child(2)")   public WebElement locatorRemaining;
+
 
 
     @PostConstruct

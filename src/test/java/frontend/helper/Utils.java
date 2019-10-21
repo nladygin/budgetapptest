@@ -27,6 +27,11 @@ public class Utils {
     }
 
 
+    public Double cleanValue(String value){
+        return Double.valueOf(value.replace("$","").replace("RUR", ""));
+    }
+
+
     public String makeAuthToken(String username, String password){
         return encodeURL("\"" + new String(Base64.encodeBase64((username + ":" + password).getBytes())) + "\"");
     }
