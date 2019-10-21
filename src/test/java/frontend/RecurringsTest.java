@@ -17,18 +17,20 @@ public class RecurringsTest extends BaseTest {
         recurringsAction.open();
         addRecurring("Phone", 13.0, utils.makeToday("dd/MM/yyyy"), "Daily", "test searchable daily recurring");
         newRecurringsAction.checkSuccessMessage("Successfully created Recurring");
-        recurringsAction.open();
-        recurringsAction.search("searchable");
-        recurringsAction.checkSearchResult(1);
+        recurringsAction
+                .open()
+                .search("searchable")
+                .checkSearchResult(1);
     }
 
 
     @Test
     public void searchNonexistentBudget(){
         loginAction.auth();
-        recurringsAction.open();
-        recurringsAction.search("nonexistentrecurring");
-        recurringsAction.checkSearchResult(0);
+        recurringsAction
+                .open()
+                .search("nonexistentrecurring")
+                .checkSearchResult(0);
     }
 
 
@@ -87,11 +89,12 @@ public class RecurringsTest extends BaseTest {
         loginAction.auth();
         addRecurring(budget, 13.0, utils.makeToday("dd/MM/yyyy"), "Daily", "test " + budget + " daily recurring");
         newRecurringsAction.checkSuccessMessage("Successfully created Recurring");
-        recurringsAction.open();
-        recurringsAction.search(budget);
-        recurringsAction.checkSearchResult(1);
-        recurringsAction.showTransaction();
-        recurringsAction.checkTransaction();
+        recurringsAction
+                .open()
+                .search(budget)
+                .checkSearchResult(1)
+                .showTransaction()
+                .checkTransaction();
     }
 
 
@@ -103,16 +106,18 @@ public class RecurringsTest extends BaseTest {
 
 
     private void addRecurring(String budget, Double amount, String recurringAt, String recurringType, String remark){
-        newRecurringsAction.open();
-        newRecurringsAction.add(budget, amount, recurringAt, recurringType, remark);
+        newRecurringsAction
+                .open()
+                .add(budget, amount, recurringAt, recurringType, remark);
     }
 
 
     private void deleteRecurring(String recurring){
-        recurringsAction.open();
-        recurringsAction.search(recurring);
-        recurringsAction.delete();
-        recurringsAction.checkSearchResult(0);
+        recurringsAction
+                .open()
+                .search(recurring)
+                .delete()
+                .checkSearchResult(0);
     }
 
 

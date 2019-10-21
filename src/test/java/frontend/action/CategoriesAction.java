@@ -3,7 +3,6 @@ package frontend.action;
 
 import frontend.helper.PageElementHelper;
 import frontend.page.CategoriesPage;
-import frontend.page.NewCategoriesPage;
 import org.hamcrest.CoreMatchers;
 import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,25 +14,29 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class CategoriesAction extends BaseAction{
 
 
-    public void open(){
+    public CategoriesAction open(){
         open(categoriesPage.root);
+        return this;
     }
 
 
-    public void search(String searchString){
+    public CategoriesAction search(String searchString){
         categoriesPage.locatorSearchInput.sendKeys(searchString);
+        return this;
     }
 
 
-    public void checkSearchResult(int resultNumber){
+    public CategoriesAction checkSearchResult(int resultNumber){
         assertThat(categoriesPage.locatorResultTable.findElements(new By.ByCssSelector("tr")).size(), CoreMatchers.equalTo(resultNumber));
+        return this;
     }
 
 
-    public void delete(){
+    public CategoriesAction delete(){
         pageElementHelper
                 .click(categoriesPage.locatorFirstRowDeleteButton)
                 .click(categoriesPage.locatorConfirmYesButton);
+        return this;
     }
 
 

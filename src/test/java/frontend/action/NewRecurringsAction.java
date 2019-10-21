@@ -1,7 +1,6 @@
 package frontend.action;
 
 
-import frontend.page.NewCategoriesPage;
 import frontend.page.NewRecurringsPage;
 import org.hamcrest.CoreMatchers;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,12 +15,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class NewRecurringsAction extends BaseAction{
 
 
-    public void open(){
+    public NewRecurringsAction open(){
         open(newRecurringsPage.root);
+        return this;
     }
 
 
-    public void add(String budget, Double amount, String recurringAt, String recurringType, String remark){
+    public NewRecurringsAction add(String budget, Double amount, String recurringAt, String recurringType, String remark){
         Select budgetSelect = new Select(newRecurringsPage.locatorBudgetOption);
         if (budget != "") {
             budgetSelect.selectByVisibleText(budget);
@@ -34,23 +34,26 @@ public class NewRecurringsAction extends BaseAction{
         }
         newRecurringsPage.locatorRemarkInput.sendKeys((remark != null) ? remark:"");
         newRecurringsPage.locatorSubmitButton.click();
+        return this;
     }
 
 
-    public void checkSuccessMessage(String message){
+    public NewRecurringsAction checkSuccessMessage(String message){
         new WebDriverWait(driver, 4L).until(ExpectedConditions.visibilityOf(newRecurringsPage.locatorSuccessAlert));
         assertThat(
                 newRecurringsPage.locatorSuccessAlert.getText(),
                 CoreMatchers.equalTo(message)
         );
+        return this;
     }
 
 
-    public void checkAlertMessage(String message){
+    public NewRecurringsAction checkAlertMessage(String message){
         assertThat(
                 newRecurringsPage.locatorAlertMessage.getText(),
                 CoreMatchers.equalTo(message)
         );
+        return this;
     }
 
 

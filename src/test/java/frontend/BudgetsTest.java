@@ -13,18 +13,20 @@ public class BudgetsTest extends BaseTest {
     @Test
     public void searchBudget(){
         loginAction.auth();
-        budgetsAction.open();
-        budgetsAction.search("divi");
-        budgetsAction.checkSearchResult(1);
+        budgetsAction
+                .open()
+                .search("divi")
+                .checkSearchResult(1);
     }
 
 
     @Test
     public void searchNonexistentBudget(){
         loginAction.auth();
-        budgetsAction.open();
-        budgetsAction.search("nonexistentbudget");
-        budgetsAction.checkSearchResult(0);
+        budgetsAction
+                .open()
+                .search("nonexistentbudget")
+                .checkSearchResult(0);
     }
 
 
@@ -85,16 +87,18 @@ public class BudgetsTest extends BaseTest {
 
 
     private void addBudget(String budget, Boolean isIncome, Double projected){
-        newBudgetsAction.open();
-        newBudgetsAction.add(budget, isIncome, projected);
+        newBudgetsAction
+                .open()
+                .add(budget, isIncome, projected);
     }
 
 
     private void deleteBudget(String budget){
-        budgetsAction.open();
-        budgetsAction.search(budget);
-        budgetsAction.delete();
-        budgetsAction.checkSearchResult(0);
+        budgetsAction
+                .open()
+                .search(budget)
+                .delete()
+                .checkSearchResult(0);
     }
 
 

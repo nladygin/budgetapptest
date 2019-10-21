@@ -16,35 +16,40 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class RecurringsAction extends BaseAction{
 
 
-    public void open(){
+    public RecurringsAction open(){
         open(recurringsPage.root);
+        return this;
     }
 
 
-    public void search(String searchString){
+    public RecurringsAction search(String searchString){
         recurringsPage.locatorSearchInput.sendKeys(searchString);
+        return this;
     }
 
 
-    public void checkSearchResult(int resultNumber){
+    public RecurringsAction checkSearchResult(int resultNumber){
         assertThat(recurringsPage.locatorResultTable.findElements(new By.ByCssSelector("tr")).size(), CoreMatchers.equalTo(resultNumber));
+        return this;
     }
 
 
-    public void delete(){
+    public RecurringsAction delete(){
         pageElementHelper
                 .click(recurringsPage.locatorFirstRowDeleteButton)
                 .click(recurringsPage.locatorConfirmYesButton);
+        return this;
     }
 
-    public void showTransaction(){
+    public RecurringsAction showTransaction(){
         pageElementHelper
                 .click(recurringsPage.locatorFirstRowTransactionButton);
         new WebDriverWait(driver, 4L).until(ExpectedConditions.visibilityOf(recurringsPage.locatorTransactionName));
+        return this;
     }
 
 
-    public void checkTransaction(){
+    public RecurringsAction checkTransaction(){
         assertThat(
                 "Transactions: " + recurringsPage.locatorRecurringName.getText(),
                 CoreMatchers.equalTo(recurringsPage.locatorTransactionName.getText())
@@ -61,6 +66,7 @@ public class RecurringsAction extends BaseAction{
                 recurringsPage.locatorRecurringCreate.getText(),
                 CoreMatchers.equalTo(recurringsPage.locatorTransactionCreate.getText())
         );
+        return this;
     }
 
 

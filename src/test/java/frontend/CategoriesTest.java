@@ -15,18 +15,20 @@ public class CategoriesTest extends BaseTest {
     @Test
     public void searchCategory(){
         loginAction.auth();
-        categoriesAction.open();
-        categoriesAction.search("home");
-        categoriesAction.checkSearchResult(1);
+        categoriesAction
+                .open()
+                .search("home")
+                .checkSearchResult(1);
     }
 
 
     @Test
     public void searchNonexistentCategory(){
         loginAction.auth();
-        categoriesAction.open();
-        categoriesAction.search("nonexistentcategory");
-        categoriesAction.checkSearchResult(0);
+        categoriesAction
+                .open()
+                .search("nonexistentcategory")
+                .checkSearchResult(0);
     }
 
 
@@ -76,16 +78,18 @@ public class CategoriesTest extends BaseTest {
 
     private void addCategory(String category, Boolean isIncome){
         loginAction.auth();
-        newCategoriesAction.open();
-        newCategoriesAction.add(category, isIncome);
+        newCategoriesAction
+                .open()
+                .add(category, isIncome);
     }
 
 
     private void deleteCategory(String category){
-        categoriesAction.open();
-        categoriesAction.search(category);
-        categoriesAction.delete();
-        categoriesAction.checkSearchResult(0);
+        categoriesAction
+                .open()
+                .search(category)
+                .delete()
+                .checkSearchResult(0);
 
     }
 

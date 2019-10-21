@@ -14,25 +14,29 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class BudgetsAction extends BaseAction{
 
 
-    public void open(){
+    public BudgetsAction open(){
         open(budgetsPage.root);
+        return this;
     }
 
 
-    public void search(String searchString){
+    public BudgetsAction search(String searchString){
         budgetsPage.locatorSearchInput.sendKeys(searchString);
+        return this;
     }
 
 
-    public void checkSearchResult(int resultNumber){
+    public BudgetsAction checkSearchResult(int resultNumber){
         assertThat(budgetsPage.locatorResultTable.findElements(new By.ByCssSelector("tr")).size(), CoreMatchers.equalTo(resultNumber));
+        return this;
     }
 
 
-    public void delete(){
+    public BudgetsAction delete(){
         pageElementHelper
                 .click(budgetsPage.locatorFirstRowDeleteButton)
                 .click(budgetsPage.locatorConfirmYesButton);
+        return this;
     }
 
 

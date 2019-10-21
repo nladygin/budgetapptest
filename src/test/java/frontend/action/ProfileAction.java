@@ -13,58 +13,67 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Component
 public class ProfileAction extends BaseAction {
 
-    public void open(){
+    public ProfileAction open(){
         open(profilePage.root);
+        return this;
     }
 
-    public void gotoPassword(){
+    public ProfileAction gotoPassword(){
         profilePage.locatorPasswordTab.click();
+        return this;
     }
 
-    public void setProfileName(String name){
+    public ProfileAction setProfileName(String name){
         pageElementHelper
                 .setValue(profilePage.locatorNameInput, name)
                 .click(profilePage.locatorFormButton);
+        return this;
     }
 
 
-    public void checkProfileName(String name){
+    public ProfileAction checkProfileName(String name){
         assertThat(
                 profilePage.locatorNameInput.getAttribute("value"),
                 CoreMatchers.equalTo(name)
         );
+        return this;
     }
 
 
-    public void setCurrencySign(String sign){
+    public ProfileAction setCurrencySign(String sign){
         pageElementHelper
                 .setValue(profilePage.locatorCurrencyInput, sign)
                 .click(profilePage.locatorFormButton);
+        return this;
     }
 
 
-    public void checkCurrencySign(String name){
+    public ProfileAction checkCurrencySign(String name){
         assertThat(
                 profilePage.locatorCurrencyInput.getAttribute("value"),
                 CoreMatchers.equalTo(name)
         );
+        return this;
     }
 
 
-    public void changeProfilePassword(String originalPassword, String newPassword, String confirmPassword){
+    public ProfileAction changeProfilePassword(String originalPassword, String newPassword, String confirmPassword){
         profilePage.locatorOriginalPasswordInput.sendKeys(originalPassword);
         profilePage.locatorNewPasswordInput.sendKeys(newPassword);
         profilePage.locatorConfirmPasswordInput.sendKeys(confirmPassword);
         profilePage.locatorFormButton.click();
+        return this;
     }
 
 
-    public void checkSuccessMessage(String message){
+    public ProfileAction checkSuccessMessage(String message){
         assertThat(profilePage.locatorSuccessMessage.getText(), CoreMatchers.equalTo(message));
+        return this;
     }
 
-    public void checkAlertMessage(String message){
+    public ProfileAction checkAlertMessage(String message){
         assertThat(profilePage.locatorAlertMessage.getText(), CoreMatchers.equalTo(message));
+        return this;
     }
 
 

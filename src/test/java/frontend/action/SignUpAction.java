@@ -13,20 +13,23 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class SignUpAction extends BaseAction{
 
 
-    public void open(){
+    public SignUpAction open(){
         open(signUpPage.root);
+        return this;
     }
 
 
-    public void signUp(String username, String password){
+    public SignUpAction signUp(String username, String password){
         signUpPage.locatorUsernameInput.sendKeys(username);
         signUpPage.locatorPasswordInput.sendKeys(password);
         signUpPage.locatorSignUpButton.click();
+        return this;
     }
 
 
-    public void checkAlertMessage(String message){
+    public SignUpAction checkAlertMessage(String message){
         assertThat(signUpPage.locatorAlertMessage.getText(), CoreMatchers.equalTo(message));
+        return this;
     }
 
 

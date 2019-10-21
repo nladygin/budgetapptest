@@ -14,33 +14,37 @@ public class SignUpTest extends BaseTest {
 
     @Test
     public void signUpWithWrongUsername(){
-        signUpAction.open();
-        signUpAction.signUp("wrongusername", "123456");
-        signUpAction.checkAlertMessage("Email is not valid");
+        signUpAction
+                .open()
+                .signUp("wrongusername", "123456")
+                .checkAlertMessage("Email is not valid");
     }
 
 
     @Test
     public void signUpWithWrongPassword(){
-        signUpAction.open();
-        signUpAction.signUp("test@test2", "123");
-        signUpAction.checkAlertMessage("Password length must be at least 6 characters");
+        signUpAction
+                .open()
+                .signUp("test@test2", "123")
+                .checkAlertMessage("Password length must be at least 6 characters");
     }
 
 
     @Test
     public void signUp(){
-        signUpAction.open();
-        signUpAction.signUp("test@test3", "123456");
+        signUpAction
+                .open()
+                .signUp("test@test3", "123456");
         loginAction.checkSuccessSignUpMessage("Sign Up success. You can Login now.");
     }
 
 
     @Test
     public void signUpAlreadyTaken(){
-        signUpAction.open();
-        signUpAction.signUp(credentials.username, credentials.password);
-        signUpAction.checkAlertMessage("Username already taken.");
+        signUpAction
+                .open()
+                .signUp(credentials.username, credentials.password)
+                .checkAlertMessage("Username already taken.");
     }
 
 

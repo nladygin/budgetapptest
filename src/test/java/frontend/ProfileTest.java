@@ -16,10 +16,11 @@ public class ProfileTest extends BaseTest {
     public void changeUserName(){
         String profileName = "Slim Shady";
         loginAction.auth();
-        profileAction.open();
-        profileAction.setProfileName(profileName);
-        profileAction.checkProfileName(profileName);
-        profileAction.checkSuccessMessage("Successfully update profile");
+        profileAction
+                .open()
+                .setProfileName(profileName)
+                .checkProfileName(profileName)
+                .checkSuccessMessage("Successfully update profile");
     }
 
 
@@ -27,40 +28,44 @@ public class ProfileTest extends BaseTest {
     public void changeCurrencySign(){
         String currencySign = "RUR";
         loginAction.auth();
-        profileAction.open();
-        profileAction.setCurrencySign(currencySign);
-        profileAction.checkCurrencySign(currencySign);
-        profileAction.checkSuccessMessage("Successfully update profile");
+        profileAction
+                .open()
+                .setCurrencySign(currencySign)
+                .checkCurrencySign(currencySign)
+                .checkSuccessMessage("Successfully update profile");
     }
 
 
     @Test
     public void changePassword(){
         loginAction.auth();
-        profileAction.open();
-        profileAction.gotoPassword();
-        profileAction.changeProfilePassword(credentials.password, credentials.password, credentials.password);
-        profileAction.checkSuccessMessage("Successfully change password");
+        profileAction
+                .open()
+                .gotoPassword()
+                .changeProfilePassword(credentials.password, credentials.password, credentials.password)
+                .checkSuccessMessage("Successfully change password");
     }
 
 
     @Test
     public void changePasswordWithBadOne(){
         loginAction.auth();
-        profileAction.open();
-        profileAction.gotoPassword();
-        profileAction.changeProfilePassword(credentials.password, "123", "123");
-        profileAction.checkAlertMessage("Password length must be at least 6 characters");
+        profileAction
+                .open()
+                .gotoPassword()
+                .changeProfilePassword(credentials.password, "123", "123")
+                .checkAlertMessage("Password length must be at least 6 characters");
     }
 
 
     @Test
     public void changePasswordWithBadConfirm(){
         loginAction.auth();
-        profileAction.open();
-        profileAction.gotoPassword();
-        profileAction.changeProfilePassword(credentials.password, "123456", "123");
-        profileAction.checkAlertMessage("Confirm Password does not match");
+        profileAction
+                .open()
+                .gotoPassword()
+                .changeProfilePassword(credentials.password, "123456", "123")
+                .checkAlertMessage("Confirm Password does not match");
     }
 
 

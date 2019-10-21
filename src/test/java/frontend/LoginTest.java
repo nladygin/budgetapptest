@@ -12,17 +12,19 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void loginWithWrongUsername(){
-        loginAction.open();
-        loginAction.login("wrongusername", "123456");
-        loginAction.checkAlertMessage("Invalid username and password combination");
+        loginAction
+                .open()
+                .login("wrongusername", "123456")
+                .checkAlertMessage("Invalid username and password combination");
     }
 
 
     @Test
     public void loginWithWrongPassword(){
-        loginAction.open();
-        loginAction.login("test@test", "wrongpassword");
-        loginAction.checkAlertMessage("Invalid username and password combination");
+        loginAction
+                .open()
+                .login("test@test", "wrongpassword")
+                .checkAlertMessage("Invalid username and password combination");
     }
 
 

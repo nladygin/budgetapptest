@@ -2,7 +2,6 @@ package frontend.action;
 
 
 import frontend.config.Credentials;
-import frontend.helper.Utils;
 import frontend.page.DashboardPage;
 import frontend.page.LoginPage;
 import org.hamcrest.CoreMatchers;
@@ -19,37 +18,43 @@ public class LoginAction extends BaseAction{
     private WebDriverWait wait;
 
 
-    public void open(){
+    public LoginAction open(){
         open(loginPage.root);
+        return this;
     }
 
 
-    public void auth(){
+    public LoginAction auth(){
         open();
         login(credentials.username, credentials.password);
         checkSuccessLogin();
+        return this;
 //        utils.setCookie("auth", utils.makeAuthToken(credentials.username, credentials.password));
     }
 
 
-    public void login(String username, String password){
+    public LoginAction login(String username, String password){
         loginPage.locatorUsernameInput.sendKeys(username);
         loginPage.locatorPasswordInput.sendKeys(password);
         loginPage.locatorLoginButton.click();
+        return this;
     }
 
 
-    public void checkAlertMessage(String message){
+    public LoginAction checkAlertMessage(String message){
         assertThat(loginPage.locatorAlertMessage.getText(), CoreMatchers.equalTo(message));
+        return this;
     }
 
 
-    public void checkSuccessSignUpMessage(String message){
+    public LoginAction checkSuccessSignUpMessage(String message){
         assertThat(loginPage.locatorSuccessSignUpMessage.getText(), CoreMatchers.equalTo(message));
+        return this;
     }
 
-    public void checkSuccessLogin(){
+    public LoginAction checkSuccessLogin(){
         new WebDriverWait(driver, 4L).until(ExpectedConditions.visibilityOf(dashboardPage.locatorHeader));
+        return this;
     }
 
 
