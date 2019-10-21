@@ -9,7 +9,11 @@ public class BaseAction {
 
 
     protected void open(String pageURN){
-        driver.get(config.serverUrl + pageURN);
+        String port = "8181";
+        if (System.getProperty("port") != null) {
+            port = System.getProperty("port");
+        }
+        driver.get(config.serverUrl + ":" + port + pageURN);
     }
 
 

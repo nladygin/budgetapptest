@@ -27,7 +27,12 @@ public class RequestHelper {
         log.info(method + " " + endpoint);
         log.info("token: " + user.token);
 
-        String url = config.serverURL + "/api" + endpoint;
+        String port = "8181";
+        if (System.getProperty("port") != null) {
+            port = System.getProperty("port");
+        }
+
+        String url = config.serverURL + ":" + port + "/api" + endpoint;
         String b = (requestBody != null) ? requestBody.asJsonString() : "";
         RequestSpecification requestSpecification =
                 given()
