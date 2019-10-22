@@ -2,7 +2,6 @@ package frontend.action;
 
 
 import frontend.page.ReportsPage;
-import frontend.page.SignUpPage;
 import org.hamcrest.CoreMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -31,20 +31,13 @@ public class Utils {
         return Double.valueOf(value.replace("$","").replace("RUR", ""));
     }
 
-
+/*
     public String makeAuthToken(String username, String password){
         return encodeURL("\"" + new String(Base64.encodeBase64((username + ":" + password).getBytes())) + "\"");
     }
 
 
     public void setCookie(String name, String value){
-//        Cookie cookie = new Cookie.Builder(name, value)
-//                .domain("192.168.137.13")
-//                .expiresOn(new Date(2015, 10, 28))
-//                .isHttpOnly(true)
-//                .isSecure(false)
-//                .path("/")
-//                .build();
         Cookie cookie = new Cookie(name,value,"127.0.0.1","/",null,false,true);
         driver.manage().addCookie(cookie);
     }
@@ -57,7 +50,7 @@ public class Utils {
             throw new RuntimeException(ex.getCause());
         }
     }
-
+*/
 
 
     @Autowired private WebDriver driver;

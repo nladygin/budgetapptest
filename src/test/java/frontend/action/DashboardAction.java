@@ -3,7 +3,6 @@ package frontend.action;
 
 import frontend.helper.PageElementHelper;
 import frontend.helper.Utils;
-import frontend.page.BudgetsPage;
 import frontend.page.DashboardPage;
 import org.hamcrest.CoreMatchers;
 import org.openqa.selenium.By;
