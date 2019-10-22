@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 node {
     properties([disableConcurrentBuilds(), [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/nladygin/budgetapptest'], parameters([string(defaultValue: '*/master', description: '', name: 'branch', trim: true)])])
 
@@ -5,21 +7,23 @@ node {
         gitResult = checkout([$class: 'GitSCM', 
                             branches: [[name: "${params.branch}"]], 
                             doGenerateSubmoduleConfigurations: false, 
-                            extensions: [[$class: 'WipeWorkspace']], 
+                            extensions: [[$class: 'WipeWorkspace'],[$class: 'LocalBranch', localBranch: "**"]], 
                             submoduleCfg: [], 
                             userRemoteConfigs: [[url: 'https://github.com/nladygin/budgetapptest.git']]
         ])
     }
     
     stage('start-container'){
-        appContainer = docker.image('paukiatwee/budgetapp').run('--name budgetapp-nladygin -p 8181:8080')
+        containerName = generateName()
+        containerPort = generatePort()
+        appContainer = docker.image('paukiatwee/budgetapp').run("--name " + containerName + " -p " + containerPort + ":8080")
         sleep 5
     }
     
     stage('auth'){
         def workspace = pwd()
-        def signup = "curl -H \"Content-Type: application/json\" -d \"{\\\"username\\\": \\\"test@test\\\", \\\"password\\\": \\\"123456\\\"}\" -X POST http://127.0.0.1:8181/api/users"
-        def auth   = "curl -H \"Content-Type: application/json\" -d \"{\\\"username\\\": \\\"test@test\\\", \\\"password\\\": \\\"123456\\\"}\" -X POST http://127.0.0.1:8181/api/users/auth > ${workspace}/src/test/resources/auth.json"
+        def signup = "curl -H \"Content-Type: application/json\" -d \"{\\\"username\\\": \\\"test@test\\\", \\\"password\\\": \\\"123456\\\"}\" -X POST http://127.0.0.1:${containerPort}/api/users"
+        def auth   = "curl -H \"Content-Type: application/json\" -d \"{\\\"username\\\": \\\"test@test\\\", \\\"password\\\": \\\"123456\\\"}\" -X POST http://127.0.0.1:${containerPort}/api/users/auth > ${workspace}/src/test/resources/auth.json"
             if (isUnix()){
                 sh label: '', script: "${signup}"
                 sh label: '', script: "${auth}"
@@ -32,7 +36,7 @@ node {
     
     stage('run-tests') {
         try {
-            bat 'mvn clean -Dtest="api.*Test" test'
+            bat 'mvn clean -Dtest="api.*Test" -Dport=${containerPort} test'
         } finally {    
             testResult = junit 'target/surefire-reports/*.xml'
         }
@@ -42,8 +46,8 @@ node {
         container: {
             stage('stop-container'){
 //              appContainer.stop()
-                def stopContainer = "docker stop budgetapp-nladygin"
-                def killContainer = "docker rm budgetapp-nladygin"
+                def stopContainer = "docker stop ${containerName}"
+                def killContainer = "docker rm ${containerName}"
                 if (isUnix()){
                     sh label: '', script: "${stopContainer}"
                     sh label: '', script: "${killContainer}"
@@ -75,4 +79,15 @@ node {
     )
 
 
+}
+
+
+def generatePort(){
+    def dateFormat = new SimpleDateFormat("mmss")
+    def date = new Date()
+    return "5" + dateFormat.format(date)
+}
+
+def generateName(){
+  return "budgetapp-nladygin-api-${gitResult.GIT_LOCAL_BRANCH}"
 }
