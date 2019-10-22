@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@ComponentScan()
+@ComponentScan("api")
 @PropertySource({"config.properties"})
 public class Config {
 
