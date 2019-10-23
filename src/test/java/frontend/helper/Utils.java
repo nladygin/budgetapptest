@@ -13,6 +13,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -21,9 +22,15 @@ public class Utils {
 
 
     public String makeToday(String format){
+        return makeToday(format, 0);
+    }
+
+
+    public String makeToday(String format, int shift){
         DateFormat dateFormat = new SimpleDateFormat(format);
-        Date date = new Date();
-        return dateFormat.format(date);
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.DAY_OF_YEAR, shift);
+        return dateFormat.format(now.getTime());
     }
 
 

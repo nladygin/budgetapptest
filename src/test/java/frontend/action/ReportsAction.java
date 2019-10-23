@@ -20,8 +20,8 @@ public class ReportsAction extends BaseAction{
 
 
     public ReportsAction setFilter(Double min, Double max, String from, String till){
-        reportsPage.locatorMinAmountInput.sendKeys(String.valueOf(min));
-        reportsPage.locatorMaxAmountInput.sendKeys(String.valueOf(max));
+        reportsPage.locatorMinAmountInput.sendKeys((min != null) ? String.valueOf(min) : "");
+        reportsPage.locatorMaxAmountInput.sendKeys((max != null) ? String.valueOf(max) : "");
         reportsPage.locatorStartOnInput.sendKeys(from);
         reportsPage.locatorEndOnInput.sendKeys(till);
         reportsPage.locatorSearchButton.click();

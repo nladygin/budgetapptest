@@ -29,6 +29,15 @@ public class ReportsTest extends BaseTest {
     }
 
 
+    @Test
+    public void checkReportByDate(){
+        loginAction.auth();
+        reportsAction
+                .open()
+                .setFilter(null, null, utils.makeToday("dd/MM/yyyy", 30), utils.makeToday("dd/MM/yyyy", 30))
+                .checkResult(0, reportsAction.getResultNumber());
+    }
+
 
 
 
