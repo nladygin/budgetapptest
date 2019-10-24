@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,13 @@ public class PageElementHelper {
     public PageElementHelper setValue(WebElement element, String value) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].value='"+value+"';", element);
+        return this;
+    }
+
+
+    public PageElementHelper setSelectorValue(WebElement element, String value) {
+        Select select = new Select(element);
+        select.selectByVisibleText(value);
         return this;
     }
 
