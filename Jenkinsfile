@@ -36,7 +36,7 @@ node {
     
     stage('run-tests') {
         try {
-            bat 'mvn clean -Dtest="api.*Test" -Dport=${containerPort} test'
+            bat 'mvn clean -Dport=${containerPort} test'
         } finally {    
             testResult = junit 'target/surefire-reports/*.xml'
         }
