@@ -89,5 +89,5 @@ def generatePort(){
 }
 
 def generateName(){
-  return "budgetapp-nladygin-api-${gitResult.GIT_LOCAL_BRANCH}"
+  return "budgetapp-nladygin-${gitResult.GIT_LOCAL_BRANCH}"
 }
